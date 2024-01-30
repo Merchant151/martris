@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://devo1luxuodji"
-path="res://.godot/imported/greensquare.svg-ca380d7d954095b1cf7736428316546e.ctex"
+uid="uid://gue3yeagucqw"
+path="res://.godot/imported/tan.svg-0043c17491825df70d884d4ad391561a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://blockImg/greensquare.svg"
-dest_files=["res://.godot/imported/greensquare.svg-ca380d7d954095b1cf7736428316546e.ctex"]
+source_file="res://blockImg/tan.svg"
+dest_files=["res://.godot/imported/tan.svg-0043c17491825df70d884d4ad391561a.ctex"]
 
 [params]
 

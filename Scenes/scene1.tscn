@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://btbrn66b1ltd"]
+
+[ext_resource type="PackedScene" uid="uid://cnody02s6sr3h" path="res://Shapes/test_shape_1.tscn" id="1_illmc"]
+[ext_resource type="PackedScene" uid="uid://db2cx1r4tgysb" path="res://Shapes/wall.tscn" id="2_hitsf"]
+
+[node name="Scene1" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(6807, -3454)
+zoom = Vector2(0.05, 0.05)
+
+[node name="testShape1" parent="." instance=ExtResource("1_illmc")]
+position = Vector2(5803, -9675)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="wall" parent="Node2D" instance=ExtResource("2_hitsf")]
+position = Vector2(8, 0)
+
+[node name="Wall2" parent="Node2D" instance=ExtResource("2_hitsf")]
+position = Vector2(6259, 0)

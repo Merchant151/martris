@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://devo1luxuodji"
-path="res://.godot/imported/greensquare.svg-ca380d7d954095b1cf7736428316546e.ctex"
+uid="uid://emglkjx17vcn"
+path="res://.godot/imported/black.svg-f910841db02685ce7968d6e0bce71eb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://blockImg/greensquare.svg"
-dest_files=["res://.godot/imported/greensquare.svg-ca380d7d954095b1cf7736428316546e.ctex"]
+source_file="res://blockImg/black.svg"
+dest_files=["res://.godot/imported/black.svg-f910841db02685ce7968d6e0bce71eb1.ctex"]
 
 [params]
 

@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://db2cx1r4tgysb"]
+
+[ext_resource type="PackedScene" uid="uid://rgiwebkmomma" path="res://Shapes/test_blockBlack.tscn" id="1_jxcrd"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TestBlockBlack" parent="." instance=ExtResource("1_jxcrd")]
+position = Vector2(906, 1882)
+
+[node name="TestBlockBlack2" parent="TestBlockBlack" instance=ExtResource("1_jxcrd")]
+position = Vector2(4382, 0)
+
+[node name="TestBlockBlack3" parent="TestBlockBlack" instance=ExtResource("1_jxcrd")]
+position = Vector2(626, 0)
+
+[node name="TestBlockBlack4" parent="TestBlockBlack" instance=ExtResource("1_jxcrd")]
+position = Vector2(1252, 0)
+
+[node name="TestBlockBlack5" parent="TestBlockBlack" instance=ExtResource("1_jxcrd")]
+position = Vector2(1878, 0)
+
+[node name="TestBlockBlack6" parent="TestBlockBlack" instance=ExtResource("1_jxcrd")]
+position = Vector2(3130, 0)
+
+[node name="TestBlockBlack7" parent="TestBlockBlack" instance=ExtResource("1_jxcrd")]
+position = Vector2(2504, 0)
+
+[node name="TestBlockBlack8" parent="TestBlockBlack" instance=ExtResource("1_jxcrd")]
+position = Vector2(3758, 0)
+
+[node name="TestBlockBlack9" parent="TestBlockBlack" instance=ExtResource("1_jxcrd")]
+position = Vector2(5008, 0)
+
+[node name="TestBlockBlack10" parent="TestBlockBlack" instance=ExtResource("1_jxcrd")]
+position = Vector2(5634, 0)
