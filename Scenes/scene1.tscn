@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://btbrn66b1ltd"]
+[gd_scene load_steps=5 format=3 uid="uid://btbrn66b1ltd"]
 
+[ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_c8ea8"]
 [ext_resource type="PackedScene" uid="uid://cnody02s6sr3h" path="res://Shapes/test_shape_1.tscn" id="1_illmc"]
 [ext_resource type="PackedScene" uid="uid://db2cx1r4tgysb" path="res://Shapes/wall.tscn" id="2_hitsf"]
+[ext_resource type="Script" path="res://scripts/BlockScript.gd" id="3_elywt"]
 
 [node name="Scene1" type="Node2D"]
+script = ExtResource("1_c8ea8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(6807, -3454)
@@ -11,6 +14,7 @@ zoom = Vector2(0.05, 0.05)
 
 [node name="testShape1" parent="." instance=ExtResource("1_illmc")]
 position = Vector2(5803, -9675)
+script = ExtResource("3_elywt")
 
 [node name="Node2D" type="Node2D" parent="."]
 
