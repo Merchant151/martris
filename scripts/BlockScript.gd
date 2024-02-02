@@ -1,4 +1,5 @@
-extends Node
+extends Node2D
+
 
 var count = 0
 var block_width = 625
@@ -12,9 +13,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	count += delta
-	print(count)
-	print(Vector2())
+	print("%1.3f" % count)
+	print(global_position)
+	#print(Vector2())
+	#print(Position)
 	#print(position)
+	
 	if(count >= step_time):
+		move_local_y(block_width)
 		count = 0
 		
