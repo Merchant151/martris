@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbgqsgn516u7h"]
+
+[ext_resource type="PackedScene" uid="uid://bdup2elttxmy7" path="res://Shapes/blue_b.tscn" id="1_k4vol"]
+
+[node name="testShape1" type="Node2D"]
+
+[node name="TestBlockBlack" parent="." instance=ExtResource("1_k4vol")]
+
+[node name="TestBlockBlack3" parent="." instance=ExtResource("1_k4vol")]
+position = Vector2(-625, 625)
+
+[node name="TestBlockBlack4" parent="." instance=ExtResource("1_k4vol")]
+position = Vector2(625, 625)
+
+[node name="TestBlockBlack2" parent="." instance=ExtResource("1_k4vol")]
+position = Vector2(0, 625)

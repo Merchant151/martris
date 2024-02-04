@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv60043ad6x1l"
-path="res://.godot/imported/greensquare.png-500756a136729cdf5ca6c9362f3ee199.ctex"
+uid="uid://c7y7v8lg1o7bc"
+path="res://.godot/imported/red.svg-f54740180ccafafb34707085214d87e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://blockImg/greensquare.png"
-dest_files=["res://.godot/imported/greensquare.png-500756a136729cdf5ca6c9362f3ee199.ctex"]
+source_file="res://blockImg/red.svg"
+dest_files=["res://.godot/imported/red.svg-f54740180ccafafb34707085214d87e1.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

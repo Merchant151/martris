@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cddtj0287gni8"]
+
+[ext_resource type="Texture2D" uid="uid://gue3yeagucqw" path="res://blockImg/tan.svg" id="1_o8mqk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17o1q"]
+
+[node name="TestBlockBlack" type="Node2D"]
+
+[node name="Black" type="Sprite2D" parent="."]
+position = Vector2(-9, -124)
+scale = Vector2(0.931, 0.931)
+texture = ExtResource("1_o8mqk")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+visible = false
+position = Vector2(4, 0)
+scale = Vector2(31.25, 31.25)
+shape = SubResource("RectangleShape2D_17o1q")

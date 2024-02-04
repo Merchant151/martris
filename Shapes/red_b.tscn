@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://152nurjow7xu"]
+
+[ext_resource type="Texture2D" uid="uid://c7y7v8lg1o7bc" path="res://blockImg/red.svg" id="1_dyym7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17o1q"]
+
+[node name="TestBlockBlack" type="Node2D"]
+
+[node name="Black" type="Sprite2D" parent="."]
+position = Vector2(-9, -124)
+scale = Vector2(0.931, 0.931)
+texture = ExtResource("1_dyym7")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+visible = false
+position = Vector2(4, 0)
+scale = Vector2(31.25, 31.25)
+shape = SubResource("RectangleShape2D_17o1q")

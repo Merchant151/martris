@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsr6i4g5lgpwv"]
+
+[ext_resource type="PackedScene" uid="uid://fhdjmu08hggx" path="res://Shapes/yellow_b.tscn" id="1_ero1b"]
+
+[node name="testShape1" type="Node2D"]
+
+[node name="TestBlockBlack" parent="." instance=ExtResource("1_ero1b")]
+
+[node name="TestBlockBlack3" parent="." instance=ExtResource("1_ero1b")]
+position = Vector2(0, -1250)
+
+[node name="TestBlockBlack2" parent="." instance=ExtResource("1_ero1b")]
+position = Vector2(0, 625)
+
+[node name="TestBlockBlack4" parent="." instance=ExtResource("1_ero1b")]
+position = Vector2(0, -625)

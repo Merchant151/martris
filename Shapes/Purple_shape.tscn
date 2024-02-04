@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ditvyvucyrel6"]
+
+[ext_resource type="PackedScene" uid="uid://dw1dnug3rxbfl" path="res://Shapes/purple_b.tscn" id="1_eqx7v"]
+
+[node name="testShape1" type="Node2D"]
+
+[node name="TestBlockBlack" parent="." instance=ExtResource("1_eqx7v")]
+
+[node name="TestBlockBlack2" parent="." instance=ExtResource("1_eqx7v")]
+position = Vector2(-625, 625)
+
+[node name="TestBlockBlack3" parent="." instance=ExtResource("1_eqx7v")]
+position = Vector2(0, 625)
+
+[node name="TestBlockBlack4" parent="." instance=ExtResource("1_eqx7v")]
+position = Vector2(0, -625)
