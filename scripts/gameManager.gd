@@ -5,6 +5,13 @@ const left_bound = -10
 const right_bound = 10
 const bottom_bound=33
 
+var prefabs = [
+load("res://Shapes/tan_shape.tscn"),
+load("res://Shapes/blue_shape.tscn"),
+load("res://Shapes/green_shape.tscn"),
+load("res://Shapes/Purple_shape.tscn"),
+load("res://Shapes/red_shape.tscn"),
+load("res://Shapes/yellow_shape.tscn")]
 var squares = Array()
 
 # Called when the node enters the scene tree for the first time.
@@ -15,9 +22,13 @@ func _ready():
 	#print(str(typeof(get_viewport())))
 	var v = Vector2i(window_x,window_y)
 	view.set_size(v)
+	
 	#print(view.get_size())
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(Input.is_key_pressed(KEY_P)):
+		print("spawning?")
+		spawn_rand()
 	pass
 	#if(Input.is_action_just_pressed("tetris_left")):
 	#	print("left pressed")
@@ -48,3 +59,17 @@ func empty_dest(pos):
 			#print("true")
 			return true
 			
+
+func spawn_rand():
+	#var test = load("res://Shapes/yellow_shape.tscn")
+	var rng = RandomNumberGenerator.new()
+	var num = rng.randi_range(0, 5)
+	print(str("spawning",prefabs[num]))
+	var child = prefabs[num].instantiate()
+	add_child(child)
+	var vec = Vector2(5803,-9675)
+	child.set_global_position(vec)
+	
+	
+
+

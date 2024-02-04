@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bl7ycywjb881g"]
+[gd_scene load_steps=3 format=3 uid="uid://bl7ycywjb881g"]
 
+[ext_resource type="Script" path="res://scripts/BlockScript.gd" id="1_fmo31"]
 [ext_resource type="PackedScene" uid="uid://152nurjow7xu" path="res://Shapes/red_b.tscn" id="1_vlslf"]
 
 [node name="testShape1" type="Node2D"]
+script = ExtResource("1_fmo31")
 
 [node name="TestBlockBlack" parent="." instance=ExtResource("1_vlslf")]
 

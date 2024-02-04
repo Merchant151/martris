@@ -9,6 +9,8 @@ var children
 #var position = vector2()
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#var vec = Vector2(5803,-9675)
+	#to_global(vec)
 	active = true
 	children = get_children()
 	#print(children)
@@ -32,6 +34,7 @@ func _process(delta):
 		if(check_down()):
 			move_local_y(block_width)
 			#print(str("(",adj_x,", ",adj_y,")"))
+			printChi()
 			count = 0
 		else:
 			pass
