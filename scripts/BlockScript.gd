@@ -11,36 +11,35 @@ var children
 func _ready():
 	active = true
 	children = get_children()
-	print(children)
-	printChi()
+	#print(children)
+	#printChi()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	count += delta
-	#print("%1.3f" % count)
-	#print(global_position)
 	var adj_x = cord.adjust_x(global_position.x)
 	var adj_y = cord.adjust_y(global_position.y)
 	#print(str("(",adj_x,", ",adj_y,")"))
 	if(Input.is_action_just_pressed("tetris_left")):
-		#print("left pressed")
-		move_local_x(-block_width)
+		if(check_left()&&active):
+			move_local_x(-block_width)
 	if(Input.is_action_just_pressed("tetris_right")):
-		#print("right pressed")
-		move_local_x(block_width)
+		if(check_right()&&active):
+			move_local_x(block_width)
 		
 	if(count >= step_time && active):
-		move_local_y(block_width)
-		printChi()
-		print(str("(",adj_x,", ",adj_y,")"))
-		count = 0
+		if(check_down()):
+			move_local_y(block_width)
+			#print(str("(",adj_x,", ",adj_y,")"))
+			count = 0
+		else:
+			pass
 		
 func printChi():
-	print(str("global shape ",global_position))
-	print(str("adjust shape ",cord.adjust_vector(global_position.x,global_position.y)))
-	print(str(cord.adjust_y(global_position.y)))
+	#print(str("global shape ",global_position))
+	#print(str("adjust shape ",cord.adjust_vector(global_position.x,global_position.y)))
+	#print(str(cord.adjust_y(global_position.y)))
 	var c = 0
 	for i in children :
 		var pos = cord.adjust_vector(i.global_position.x,global_position.y)
@@ -49,6 +48,44 @@ func printChi():
 		c += 1
 
 func child_loc():
+	var pos
+	var arr = Array()
 	for i in children :
-		var pos = cord.adjust_vector(i.global_position.x,global_position.y)
-		
+		pos = cord.adjust_vector(i.global_position.x,global_position.y)
+		arr.append(pos)
+	return arr
+	
+func child_loc_off(off_x,off_y):
+	var pos
+	var arr = Array()
+	for i in children :
+		pos = cord.adjust_vector(i.global_position.x,global_position.y)
+		pos[0] += off_x
+		pos[1] += off_y
+		arr.append(pos)
+	return arr
+
+func check_left():
+	var test = child_loc_off(-1,0)
+	for i in test:
+		if(get_parent().empty_dest(i)):
+			return true
+		else:
+			return false
+func check_right():
+	var test = child_loc_off(1,0)
+	for i in test:
+		if(get_parent().empty_dest(i)):
+			return true
+		else:
+			return false
+func check_down():
+	var test = child_loc_off(0,1)
+	for i in test:
+		if(get_parent().empty_dest(i)):
+			#print("empty")
+			return true
+		else:
+			print("full")
+			active = false
+			return false
