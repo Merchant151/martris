@@ -38,10 +38,17 @@ func _process(delta):
 		count = 0
 		
 func printChi():
+	print(str("global shape ",global_position))
+	print(str("adjust shape ",cord.adjust_vector(global_position.x,global_position.y)))
+	print(str(cord.adjust_y(global_position.y)))
 	var c = 0
 	for i in children :
 		var pos = cord.adjust_vector(i.global_position.x,global_position.y)
-		#print(c)
-		print(str("child",c," ",i.global_position))
-		print(str("child ",c," ",pos))
+		print(str("global child ",c," ",i.global_position))
+		print(str("local  child ",c," ",pos))
 		c += 1
+
+func child_loc():
+	for i in children :
+		var pos = cord.adjust_vector(i.global_position.x,global_position.y)
+		

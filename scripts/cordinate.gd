@@ -17,8 +17,8 @@ func adjust_y(y: int):
 	var ans = (y - remain_y)/unit + offset_y
 	return ans
 	
-func adjust_vector(x,y):
+func adjust_vector(x:int,y:int):
 	var ans = Array()
-	ans.append((x - remain_x)/unit - offset_x)
-	ans.append((y - remain_y)/unit - offset_y)
+	ans.append((x - remain_x)/unit + offset_x)
+	ans.append((y - remain_y)/unit + offset_y)
 	return ans
