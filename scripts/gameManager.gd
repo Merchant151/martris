@@ -48,11 +48,11 @@ func empty_dest(pos):
 	#print_squares()
 	for i in squares:
 		if(i[0] == pos[0] && i[1] == pos[1]):
-			print("left or right square")
+			print("hit square")
 			return false
-		elif(pos[1] == i[1]):
-			print("bottom square")
-			return false
+		#elif(pos[1] == i[1]):
+			#print("bottom square")
+			#return false
 	if(pos[0] <= left_bound || pos[0] >= right_bound):
 		print("left or right boundry")
 		return false
@@ -67,7 +67,7 @@ func spawn_rand():
 	#var test = load("res://Shapes/yellow_shape.tscn")
 	var rng = RandomNumberGenerator.new()
 	var num = rng.randi_range(0, 5)
-	print(str("spawning",prefabs[num]))
+	#print(str("spawning",prefabs[num]))
 	var child = prefabs[num].instantiate()
 	add_child(child)
 	var vec = Vector2(5803,-9675)
