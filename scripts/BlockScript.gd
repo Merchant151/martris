@@ -25,16 +25,28 @@ func _process(delta):
 	#print(str("(",adj_x,", ",adj_y,")"))
 	if(Input.is_action_just_pressed("tetris_left")):
 		if(check_left()&&active):
-			move_local_x(-block_width)
+			global_translate(Vector2(-block_width,0))
 	if(Input.is_action_just_pressed("tetris_right")):
 		if(check_right()&&active):
-			move_local_x(block_width)
-		
+			global_translate(Vector2(block_width,0))
+	if(Input.is_action_just_pressed("rotate_right")):
+		if(check_rotate_right()&&active):
+			rotate(1.570)
+	if(Input.is_action_just_pressed("rotate_left")):
+		if(check_rotate_right()&&active):
+			rotate(1.570)
+	if(Input.is_action_just_pressed("drop")&&active):
+		step_time = 0.01
+	if(Input.is_action_just_pressed("down")):
+		if(check_down()&&active):
+			global_translate(Vector2(0,block_width))
+			
 	if(count >= step_time && active):
 		if(check_down()):
-			move_local_y(block_width)
+			#move_local_y(block_width)
+			global_translate(Vector2(0,block_width))
 			#print(str("(",adj_x,", ",adj_y,")"))
-			printChi()
+			#printChi()
 			count = 0
 		else:
 			pass
@@ -90,5 +102,22 @@ func check_down():
 			return true
 		else:
 			print("full")
+			get_parent().spawn_rand()
+			add_to_parrent()
 			active = false
 			return false
+			
+func check_rotate_right():
+	##TODO
+	return true
+func check_rotate_left():
+	##TODO
+	return true
+	
+func add_to_parrent():
+	var childs = child_loc()
+	for i in childs:
+		#print(str(i[0]," ",i[1]))
+		get_parent().squares.append(i)
+		#print("printing_squares")
+		#get_parent().print_squares()

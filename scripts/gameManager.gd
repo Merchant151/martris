@@ -26,9 +26,9 @@ func _ready():
 	#print(view.get_size())
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(Input.is_key_pressed(KEY_P)):
-		print("spawning?")
-		spawn_rand()
+	#if(Input.is_key_pressed(KEY_P)):
+		#print("spawning?")
+		#spawn_rand()
 	pass
 	#if(Input.is_action_just_pressed("tetris_left")):
 	#	print("left pressed")
@@ -40,25 +40,28 @@ func new_square(sq):
 
 func remove_row() :
 	pass
+func print_squares():
+	for i in squares:
+		print(str(i[0]," ",i[1]))
 	
 func empty_dest(pos):
+	#print_squares()
 	for i in squares:
 		if(i[0] == pos[0] && i[1] == pos[1]):
 			print("left or right square")
 			return false
-		elif(pos[0] <= left_bound || pos[0] >= right_bound):
-			print("left or right boundry")
-			return false
-		elif(pos[1] == bottom_bound):
-			print("bottom boundry")
-			return false
 		elif(pos[1] == i[1]):
 			print("bottom square")
 			return false
-		else:
-			#print("true")
-			return true
-			
+	if(pos[0] <= left_bound || pos[0] >= right_bound):
+		print("left or right boundry")
+		return false
+	elif(pos[1] == bottom_bound):
+		print("bottom boundry")
+		return false
+	else:
+		#print("true")
+		return true
 
 func spawn_rand():
 	#var test = load("res://Shapes/yellow_shape.tscn")
