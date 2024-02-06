@@ -20,33 +20,36 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	count += delta
-	var adj_x = cord.adjust_x(global_position.x)
-	var adj_y = cord.adjust_y(global_position.y)
+	#var adj_x = cord.adjust_x(global_position.x)
+	#var adj_y = cord.adjust_y(global_position.y)
 	#print(str("(",adj_x,", ",adj_y,")"))
 	if(Input.is_action_just_pressed("tetris_left")):
 		if(check_left()&&active):
 			global_translate(Vector2(-block_width,0))
+			bugs()
 	if(Input.is_action_just_pressed("tetris_right")):
 		if(check_right()&&active):
 			global_translate(Vector2(block_width,0))
+			bugs()
 	if(Input.is_action_just_pressed("rotate_right")):
 		if(check_rotate_right()&&active):
 			rotate(1.570)
+			bugs()
 	if(Input.is_action_just_pressed("rotate_left")):
 		if(check_rotate_right()&&active):
 			rotate(1.570)
+			bugs()
 	if(Input.is_action_just_pressed("drop")&&active):
 		step_time = 0.01
 	if(Input.is_action_just_pressed("down")&&active):
 		if(check_down()&&active):
 			global_translate(Vector2(0,block_width))
-			
+			bugs()
 	if(count >= step_time && active):
 		if(check_down()):
 			#move_local_y(block_width)
 			global_translate(Vector2(0,block_width))
-			#print(str("(",adj_x,", ",adj_y,")"))
-			#printChi()
+			bugs()
 			count = 0
 		else:
 			pass
@@ -81,14 +84,14 @@ func child_loc_off(off_x,off_y):
 	return arr
 
 func check_left():
-	var test = child_loc_off(-1,0)
+	var test = child_loc_off(-2,0)
 	for i in test:
 		if(get_parent().empty_dest(i)):
 			return true
 		else:
 			return false
 func check_right():
-	var test = child_loc_off(1,0)
+	var test = child_loc_off(2,0)
 	for i in test:
 		if(get_parent().empty_dest(i)):
 			return true
@@ -122,3 +125,5 @@ func add_to_parrent():
 		get_parent().squares.append(i)
 		#print("printing_squares")
 		#get_parent().print_squares()
+func bugs():
+	get_parent().debug_me(child_loc())

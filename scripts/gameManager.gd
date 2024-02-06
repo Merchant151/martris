@@ -3,7 +3,7 @@ const window_x = 600
 const window_y = 900
 const left_bound = -10
 const right_bound = 10
-const bottom_bound=33
+const bottom_bound=13 ##NEEDS TO BE 33 TODO
 
 var prefabs = [
 load("res://Shapes/tan_shape.tscn"),
@@ -13,6 +13,7 @@ load("res://Shapes/Purple_shape.tscn"),
 load("res://Shapes/red_shape.tscn"),
 load("res://Shapes/yellow_shape.tscn")]
 var squares = Array()
+var debug = debugger.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -74,6 +75,8 @@ func spawn_rand():
 	var vec = Vector2(5803,-9675)
 	child.set_global_position(vec)
 	
-	
+func debug_me(potato):
+	print("========")
+	debug.live_board(squares,potato)	
 
 

@@ -16,13 +16,13 @@ func _process(delta):
 # A file is a class!
 
 # (optional) icon to show in the editor dialogs:
-@icon("res://path/to/optional/icon.svg")
+#@icon("res://path/to/optional/icon.svg")
 
 # (optional) class definition:
-class_name MyClass
+#class_name MyClass
 
 # Inheritance:
-extends BaseClass
+#extends BaseClass
 
 
 # Member variables.
