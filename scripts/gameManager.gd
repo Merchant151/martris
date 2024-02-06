@@ -48,6 +48,7 @@ func empty_dest(pos):
 	#print_squares()
 	for i in squares:
 		if(i[0] == pos[0] && i[1] == pos[1]):
+			print(str("hit square at (",i[0]," , ",i[1],")"))
 			print("hit square")
 			return false
 		#elif(pos[1] == i[1]):

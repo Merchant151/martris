@@ -37,7 +37,7 @@ func _process(delta):
 			rotate(1.570)
 	if(Input.is_action_just_pressed("drop")&&active):
 		step_time = 0.01
-	if(Input.is_action_just_pressed("down")):
+	if(Input.is_action_just_pressed("down")&&active):
 		if(check_down()&&active):
 			global_translate(Vector2(0,block_width))
 			
@@ -57,7 +57,7 @@ func printChi():
 	#print(str(cord.adjust_y(global_position.y)))
 	var c = 0
 	for i in children :
-		var pos = cord.adjust_vector(i.global_position.x,global_position.y)
+		var pos = cord.adjust_vector(i.global_position.x,i.global_position.y)
 		print(str("global child ",c," ",i.global_position))
 		print(str("local  child ",c," ",pos))
 		c += 1
@@ -66,7 +66,7 @@ func child_loc():
 	var pos
 	var arr = Array()
 	for i in children :
-		pos = cord.adjust_vector(i.global_position.x,global_position.y)
+		pos = cord.adjust_vector(i.global_position.x,i.global_position.y)
 		arr.append(pos)
 	return arr
 	
@@ -74,7 +74,7 @@ func child_loc_off(off_x,off_y):
 	var pos
 	var arr = Array()
 	for i in children :
-		pos = cord.adjust_vector(i.global_position.x,global_position.y)
+		pos = cord.adjust_vector(i.global_position.x,i.global_position.y)
 		pos[0] += off_x
 		pos[1] += off_y
 		arr.append(pos)
@@ -95,13 +95,14 @@ func check_right():
 		else:
 			return false
 func check_down():
-	var test = child_loc_off(0,1)
+	var test = child_loc_off(0,2)
 	for i in test:
 		if(get_parent().empty_dest(i)):
 			#print("empty")
 			return true
 		else:
-			print("full")
+			#print("full")
+			printChi()
 			get_parent().spawn_rand()
 			add_to_parrent()
 			active = false
