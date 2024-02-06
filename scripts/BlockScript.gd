@@ -84,33 +84,27 @@ func child_loc_off(off_x,off_y):
 	return arr
 
 func check_left():
-	var test = child_loc_off(-2,0)
+	var test = child_loc_off(-1,0)
 	for i in test:
-		if(get_parent().empty_dest(i)):
-			return true
-		else:
+		if(!get_parent().empty_dest(i)):
 			return false
+	return true
 func check_right():
-	var test = child_loc_off(2,0)
+	var test = child_loc_off(1,0)
 	for i in test:
-		if(get_parent().empty_dest(i)):
-			return true
-		else:
+		if(!get_parent().empty_dest(i)):
 			return false
+	return true
 func check_down():
-	var test = child_loc_off(0,2)
+	var test = child_loc_off(0,1)
 	for i in test:
-		if(get_parent().empty_dest(i)):
-			#print("empty")
-			return true
-		else:
-			#print("full")
+		if(!get_parent().empty_dest(i)):
 			printChi()
 			get_parent().spawn_rand()
 			add_to_parrent()
 			active = false
 			return false
-			
+	return true
 func check_rotate_right():
 	##TODO
 	return true
