@@ -79,4 +79,17 @@ func debug_me(potato):
 	print("========")
 	debug.live_board(squares,potato)	
 
+func row_clear():
+	var row_len = right_bound - left_bound
+	for row in range(0,bottom_bound):
+		var x_count = 0
+		for collumn in range(left_bound,right_bound):
+			for i in squares:
+				if (i[0]==collumn&&i[1]==row):
+					x_count += 1
+		if x_count == row_len:
+			del_row(row)
+			print(str("del row: ",row))
 
+func del_row(row):
+	pass

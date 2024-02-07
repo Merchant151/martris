@@ -121,3 +121,5 @@ func add_to_parrent():
 		#get_parent().print_squares()
 func bugs():
 	get_parent().debug_me(child_loc())
+	
+
