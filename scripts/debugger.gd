@@ -5,7 +5,7 @@ var live_shapes
 
 var row_x_start=-10
 var row_x_end = 10
-var row_y_end = 13
+var row_y_end = 33
 var row_y_start=0
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,9 +27,9 @@ func print_cords(arr):
 
 func construct_row_strings(cords):
 	var grid_strings = ""
-	for y in range(row_y_start,row_y_end+1):
+	for y in range(row_y_start,row_y_end):
 		#rint("constructing y: "+ str(y))
-		for x in range(row_x_start,row_x_end+1):
+		for x in range(row_x_start+1,row_x_end):
 			#rint("constructing x: "+ str(x))
 			var empty = true
 			var collision = 0

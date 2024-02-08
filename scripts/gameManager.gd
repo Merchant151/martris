@@ -3,7 +3,7 @@ const window_x = 600
 const window_y = 900
 const left_bound = -10
 const right_bound = 10
-const bottom_bound=13 ##NEEDS TO BE 33 TODO
+const bottom_bound=33 
 
 var prefabs = [
 load("res://Shapes/tan_shape.tscn"),
@@ -14,9 +14,11 @@ load("res://Shapes/red_shape.tscn"),
 load("res://Shapes/yellow_shape.tscn")]
 var squares = Array()
 var debug = debugger.new()
+var cords
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	cords = cordinate.new()
 	squares.append([256,256])# Replace with function body.
 	#print(str(get_viewport().size))
 	var view = get_window()
@@ -27,9 +29,9 @@ func _ready():
 	#print(view.get_size())
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#if(Input.is_key_pressed(KEY_P)):
+	if(Input.is_key_pressed(KEY_P)):
 		#print("spawning?")
-		#spawn_rand()
+		del_row(31)
 	pass
 	#if(Input.is_action_just_pressed("tetris_left")):
 	#	print("left pressed")
@@ -92,4 +94,36 @@ func row_clear():
 			print(str("del row: ",row))
 
 func del_row(row):
+	del_grid_row(row)
+	var LB=cords.dejust_x(left_bound+1)
+	var RB=cords.dejust_x(right_bound-1)
+	var y = cords.dejust_y(row)
+	print("searching for cord: " + str(y))
+	var shapes = get_children()
+	var sckubes=Array()
+	for shape in shapes:
+		var scklroiop = shape.get_children()#give me a break on the var names im tired and I think its funny 
+		for sKAckarak in scklroiop:
+			sckubes.append(sKAckarak)
+		#print(shape.get_child_count())
+	#print(sckubes)
+	for i in range(left_bound+1,right_bound-1):
+		for slipperies in sckubes:
+			if(slipperies.global_position.x >= LB&&slipperies.global_position.x <= RB&&slipperies.global_position.y == y+25):
+				#print(str(slipperies)+"passed")
+				kill_the_child(slipperies)
+				pass
+			pass
+		
+func kill_the_child(c):
+	c.queue_free()
+	pass
+	
+func del_grid_row(row): #deletes cordinates from the virtual grid
+	var row_list = Array()
+	for i in range(squares.size()):
+		if (squares[i][1] == row):
+			row_list.append(squares[i])
+	for i in row_list:
+		squares.erase(i)
 	pass

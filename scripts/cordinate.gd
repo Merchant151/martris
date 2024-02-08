@@ -22,3 +22,15 @@ func adjust_vector(x:int,y:int):
 	ans.append((x - remain_x)/unit + offset_x)
 	ans.append((y - remain_y)/unit + offset_y)
 	return ans
+
+func dejust_vector(x,y):
+	var ans = Array()
+	ans.append((x-offset_x)*unit + remain_x)
+	ans.append((y-offset_y)*unit + remain_y)
+	return ans
+func dejust_y(y: int):
+	var ans = ((y-offset_y)*unit + remain_y)
+	return ans
+func dejust_x(x: int):
+	var ans = ((x-offset_x)*unit + remain_x)
+	return ans

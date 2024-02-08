@@ -13,7 +13,6 @@ func _ready():
 	#to_global(vec)
 	active = true
 	children = get_children()
-	#print(children)
 	#printChi()
 
 
@@ -74,9 +73,11 @@ func child_loc():
 	return arr
 	
 func child_loc_off(off_x,off_y):
+	children = get_children()
 	var pos
 	var arr = Array()
 	for i in children :
+		print(str(i)+": child_loc_off")
 		pos = cord.adjust_vector(i.global_position.x,i.global_position.y)
 		pos[0] += off_x
 		pos[1] += off_y
@@ -84,18 +85,21 @@ func child_loc_off(off_x,off_y):
 	return arr
 
 func check_left():
+	print("check Left")
 	var test = child_loc_off(-1,0)
 	for i in test:
 		if(!get_parent().empty_dest(i)):
 			return false
 	return true
 func check_right():
+	print("check right")
 	var test = child_loc_off(1,0)
 	for i in test:
 		if(!get_parent().empty_dest(i)):
 			return false
 	return true
 func check_down():
+	print("check down")
 	var test = child_loc_off(0,1)
 	for i in test:
 		if(!get_parent().empty_dest(i)):
@@ -120,6 +124,7 @@ func add_to_parrent():
 		#print("printing_squares")
 		#get_parent().print_squares()
 func bugs():
-	get_parent().debug_me(child_loc())
+	#let_parent().debug_me(child_loc())
+	pass
 	
 
