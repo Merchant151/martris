@@ -127,3 +127,16 @@ func del_grid_row(row): #deletes cordinates from the virtual grid
 	for i in row_list:
 		squares.erase(i)
 	pass
+
+func move_down(row):
+	var LB=cords.dejust_x(left_bound+1)
+	var RB=cords.dejust_x(right_bound-1)
+	var y = cords.dejust_y(row)
+	var all_shapes = get_chidren()
+	for shape in shapes:
+		var blocks = shape.getchildren()
+		for block in blocks:
+			if(block.global_position.x >=LB&&block.grobal_position.x <=RB&&block.global_position.y > y+25):
+				pass
+				#ADD MOVE CHILD DOWN
+	pass
