@@ -77,7 +77,7 @@ func child_loc_off(off_x,off_y):
 	var pos
 	var arr = Array()
 	for i in children :
-		print(str(i)+": child_loc_off")
+		#print(str(i)+": child_loc_off")
 		pos = cord.adjust_vector(i.global_position.x,i.global_position.y)
 		pos[0] += off_x
 		pos[1] += off_y
@@ -85,28 +85,29 @@ func child_loc_off(off_x,off_y):
 	return arr
 
 func check_left():
-	print("check Left")
+	#print("check Left")
 	var test = child_loc_off(-1,0)
 	for i in test:
 		if(!get_parent().empty_dest(i)):
 			return false
 	return true
 func check_right():
-	print("check right")
+	#print("check right")
 	var test = child_loc_off(1,0)
 	for i in test:
 		if(!get_parent().empty_dest(i)):
 			return false
 	return true
 func check_down():
-	print("check down")
+	#print("check down")
 	var test = child_loc_off(0,1)
 	for i in test:
 		if(!get_parent().empty_dest(i)):
-			printChi()
+			#printChi()
 			get_parent().spawn_rand()
 			add_to_parrent()
 			active = false
+			get_parent().row_clear()
 			return false
 	return true
 func check_rotate_right():

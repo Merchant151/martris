@@ -12,6 +12,7 @@ load("res://Shapes/green_shape.tscn"),
 load("res://Shapes/Purple_shape.tscn"),
 load("res://Shapes/red_shape.tscn"),
 load("res://Shapes/yellow_shape.tscn")]
+
 var squares = Array()
 var debug = debugger.new()
 var cords
@@ -51,17 +52,17 @@ func empty_dest(pos):
 	#print_squares()
 	for i in squares:
 		if(i[0] == pos[0] && i[1] == pos[1]):
-			print(str("hit square at (",i[0]," , ",i[1],")"))
-			print("hit square")
+			#print(str("hit square at (",i[0]," , ",i[1],")"))
+			#print("hit square")
 			return false
 		#elif(pos[1] == i[1]):
 			#print("bottom square")
 			#return false
 	if(pos[0] <= left_bound || pos[0] >= right_bound):
-		print("left or right boundry")
+		#print("left or right boundry")
 		return false
 	elif(pos[1] == bottom_bound):
-		print("bottom boundry")
+		#print("bottom boundry")
 		return false
 	else:
 		#print("true")
@@ -72,7 +73,7 @@ func spawn_rand():
 	var rng = RandomNumberGenerator.new()
 	var num = rng.randi_range(0, 5)
 	#print(str("spawning",prefabs[num]))
-	var child = prefabs[num].instantiate()
+	var child = prefabs[5].instantiate()
 	add_child(child)
 	var vec = Vector2(5803,-9675)
 	child.set_global_position(vec)
@@ -82,13 +83,17 @@ func debug_me(potato):
 	debug.live_board(squares,potato)	
 
 func row_clear():
-	var row_len = right_bound - left_bound
+	print("checking rows")
+	var row_len = right_bound - left_bound -1
+	print("at row_LEN: "+str(row_len))
 	for row in range(0,bottom_bound):
+		#print("ROW :"+ str(row))
 		var x_count = 0
 		for collumn in range(left_bound,right_bound):
 			for i in squares:
 				if (i[0]==collumn&&i[1]==row):
 					x_count += 1
+		print("ROW :"+ str(row)+" C: "+str(x_count))
 		if x_count == row_len:
 			del_row(row)
 			print(str("del row: ",row))
@@ -114,7 +119,8 @@ func del_row(row):
 				kill_the_child(slipperies)
 				pass
 			pass
-		
+	move_down(row)
+
 func kill_the_child(c):
 	c.queue_free()
 	pass
@@ -132,11 +138,12 @@ func move_down(row):
 	var LB=cords.dejust_x(left_bound+1)
 	var RB=cords.dejust_x(right_bound-1)
 	var y = cords.dejust_y(row)
-	var all_shapes = get_chidren()
-	for shape in shapes:
-		var blocks = shape.getchildren()
-		for block in blocks:
-			if(block.global_position.x >=LB&&block.grobal_position.x <=RB&&block.global_position.y > y+25):
-				pass
-				#ADD MOVE CHILD DOWN
-	pass
+	var all_shapes = get_children()
+	for shape in all_shapes:
+		if (shape.get_child_count() > 0):
+			var blocks = shape.get_children()
+			for block in blocks:
+				if(block.global_position.x >=LB&&block.global_position.x <=RB&&block.global_position.y < y+25):
+					block.global_translate(Vector2(0,block.get_parent().block_width))
+					pass
+					#ADD MOVE CHILD DOWN
