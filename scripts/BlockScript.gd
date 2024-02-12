@@ -5,7 +5,11 @@ var count = 0
 var block_width = 625
 var step_time = 0.5
 var active : bool
-var children  
+var children
+#rotational properties
+var rotation_array
+var rotation_state = 0
+var rotation_num  
 #var position = vector2()
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,6 +17,7 @@ func _ready():
 	#to_global(vec)
 	active = true
 	children = get_children()
+	init_rotational_properties()
 	#printChi()
 
 
@@ -32,11 +37,11 @@ func _process(delta):
 			bugs()
 	if(Input.is_action_just_pressed("rotate_right")):
 		if(check_rotate_right()&&active):
-			rotate(1.570)
+			rotate(1.57079)
 			bugs()
 	if(Input.is_action_just_pressed("rotate_left")):
 		if(check_rotate_right()&&active):
-			rotate(1.570)
+			rotate(1.57079)
 			bugs()
 	if(Input.is_action_just_pressed("drop")&&active):
 		step_time = 0.01
@@ -115,6 +120,7 @@ func check_rotate_right():
 	return true
 func check_rotate_left():
 	##TODO
+	#add if rotation_num > 0 subtract if rotation_state > 0 or set rotation rotation_num  (reverse the logic for check rotate right) (maybe this logic shouldn't go in check rotate but it has to be done before we do the actual check)
 	return true
 	
 func add_to_parrent():
@@ -125,7 +131,8 @@ func add_to_parrent():
 		#print("printing_squares")
 		#get_parent().print_squares()
 func bugs():
-	#let_parent().debug_me(child_loc())
+	get_parent().debug_me(child_loc())
 	pass
 	
-
+func init_rotational_properties():
+	pass#set cotation array depending on block name, Set rotation num
