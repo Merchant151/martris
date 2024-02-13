@@ -8,18 +8,19 @@ var active : bool
 var children
 #rotational properties
 var rotation_array
-var rotation_state = 0
-var rotation_num  = 0
+var rotation_state = 1
+var rotation_num  = 1
 var center_child
 #var position = vector2()
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	rotation_array = Array()
-	#var vec = Vector2(5803,-9675)
-	#to_global(vec)
 	active = true
 	children = get_children()
 	init_rotational_properties()
+	rotation_array = [0]
+	for node in children:
+		if str(node).begins_with("TestBlock3"):
+			center_child = node
 	#printChi()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,9 +45,10 @@ func _process(delta):
 		else:
 			roTo +=1
 		pass
-		if(check_rotate(roTo)&&active):
-			rotate(1.57079)
-			bugs()
+		pre_def_rotation(roTo)
+		#if(check_rotate(roTo)&&active):
+			#rotate(1.57079)
+		bugs()
 	if(Input.is_action_just_pressed("rotate_left")&&rotation_num > 0):
 		var roTo
 		if(rotation_state == 0):
@@ -54,9 +56,9 @@ func _process(delta):
 		else:
 			roTo -=1
 		pass
-		if(check_rotate(roTo)&&active):
-			rotate(1.57079)
-			bugs()
+		#if(check_rotate(roTo)&&active):
+			#rotate(1.57079)
+		bugs()
 	if(Input.is_action_just_pressed("drop")&&active):
 		step_time = 0.01
 	if(Input.is_action_just_pressed("down")&&active):
@@ -138,15 +140,25 @@ func check_rotate(roTo):
 	
 func pre_def_rotation(roTo):
 	var pos = 0
-	var new_cords = translate_cords(rotation_array[roTo],[center_child.x,center_child.y])###x and y needs to be fixed TODO
+	var new_cords = translate_cords(rotation_array[roTo],[center_child.global_position.x,center_child.global_position.y])
+	if !check_cords(new_cords):
+		return
 	for child in children:
 		if child != center_child:
-			
+			child.global_position = Vector2 (new_cords[pos][0],new_cords[pos][1])
 			pos+=1
 	pass
 	
 func translate_cords(globe, center):
-	return Array()
+	globe = [[-1,0],[1,0],[2,0]] #setting it for now this can be commented out
+	#multiply glob
+	for pods in globe:
+		pods[0] = pods[0]*block_width
+		pods[1] = pods[1]*block_width
+		#translation
+		pods[0] = pods[0] + center[0]
+		pods[1] = pods[1] + center[1]
+	return globe
 func add_to_parrent():
 	var childs = child_loc()
 	for i in childs:
@@ -160,3 +172,5 @@ func bugs():
 	
 func init_rotational_properties():
 	pass#set cotation array depending on block name, Set rotation num
+func check_cords(cords):
+	return true

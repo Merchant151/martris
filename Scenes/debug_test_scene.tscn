@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://oshpomol08gj"]
+[gd_scene load_steps=3 format=3 uid="uid://oshpomol08gj"]
 
-[ext_resource type="Script" path="res://scripts/debugger.gd" id="1_xasem"]
+[ext_resource type="Script" path="res://Scenes/testing_script.gd" id="1_elqid"]
+[ext_resource type="PackedScene" uid="uid://dbgqsgn516u7h" path="res://Shapes/blue_shape.tscn" id="2_emcid"]
 
 [node name="DebugTestScene" type="Node2D"]
-script = ExtResource("1_xasem")
+script = ExtResource("1_elqid")
+
+[node name="testShape1" parent="." instance=ExtResource("2_emcid")]
+scale = Vector2(0.05, 0.05)
+script = null
