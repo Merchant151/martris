@@ -9,17 +9,18 @@ var children
 #rotational properties
 var rotation_array
 var rotation_state = 0
-var rotation_num  
+var rotation_num  = 0
+var center_child
 #var position = vector2()
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	rotation_array = Array()
 	#var vec = Vector2(5803,-9675)
 	#to_global(vec)
 	active = true
 	children = get_children()
 	init_rotational_properties()
 	#printChi()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -35,12 +36,25 @@ func _process(delta):
 		if(check_right()&&active):
 			global_translate(Vector2(block_width,0))
 			bugs()
-	if(Input.is_action_just_pressed("rotate_right")):
-		if(check_rotate_right()&&active):
+	if(Input.is_action_just_pressed("rotate_right")&&rotation_num > 0):
+		
+		var roTo
+		if(rotation_state == rotation_num):
+			roTo = 0
+		else:
+			roTo +=1
+		pass
+		if(check_rotate(roTo)&&active):
 			rotate(1.57079)
 			bugs()
-	if(Input.is_action_just_pressed("rotate_left")):
-		if(check_rotate_right()&&active):
+	if(Input.is_action_just_pressed("rotate_left")&&rotation_num > 0):
+		var roTo
+		if(rotation_state == 0):
+			roTo = rotation_num
+		else:
+			roTo -=1
+		pass
+		if(check_rotate(roTo)&&active):
 			rotate(1.57079)
 			bugs()
 	if(Input.is_action_just_pressed("drop")&&active):
@@ -68,7 +82,6 @@ func printChi():
 		print(str("global child ",c," ",i.global_position))
 		print(str("local  child ",c," ",pos))
 		c += 1
-
 func child_loc():
 	var pos
 	var arr = Array()
@@ -76,7 +89,6 @@ func child_loc():
 		pos = cord.adjust_vector(i.global_position.x,i.global_position.y)
 		arr.append(pos)
 	return arr
-	
 func child_loc_off(off_x,off_y):
 	children = get_children()
 	var pos
@@ -88,7 +100,6 @@ func child_loc_off(off_x,off_y):
 		pos[1] += off_y
 		arr.append(pos)
 	return arr
-
 func check_left():
 	#print("check Left")
 	var test = child_loc_off(-1,0)
@@ -120,9 +131,22 @@ func check_rotate_right():
 	return true
 func check_rotate_left():
 	##TODO
-	#add if rotation_num > 0 subtract if rotation_state > 0 or set rotation rotation_num  (reverse the logic for check rotate right) (maybe this logic shouldn't go in check rotate but it has to be done before we do the actual check)
+	return true
+func check_rotate(roTo):
+	
 	return true
 	
+func pre_def_rotation(roTo):
+	var pos = 0
+	var new_cords = translate_cords(rotation_array[roTo],[center_child.x,center_child.y])###x and y needs to be fixed TODO
+	for child in children:
+		if child != center_child:
+			
+			pos+=1
+	pass
+	
+func translate_cords(globe, center):
+	return Array()
 func add_to_parrent():
 	var childs = child_loc()
 	for i in childs:
