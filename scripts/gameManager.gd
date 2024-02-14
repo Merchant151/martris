@@ -53,19 +53,21 @@ func empty_dest(pos):
 	for i in squares:
 		if(i[0] == pos[0] && i[1] == pos[1]):
 			#print(str("hit square at (",i[0]," , ",i[1],")"))
-			#print("hit square")
+			print("hit square")
 			return false
 		#elif(pos[1] == i[1]):
 			#print("bottom square")
 			#return false
 	if(pos[0] <= left_bound || pos[0] >= right_bound):
-		#print("left or right boundry")
+		print(str("hit boundry at (",pos[0]," , ",pos[1],")"))
+		print("left or right boundry")
 		return false
 	elif(pos[1] == bottom_bound):
-		#print("bottom boundry")
+		print("bottom boundry")
 		return false
 	else:
 		#print("true")
+		#print(str("pass boundry at (",pos[0]," , ",pos[1],")"))
 		return true
 
 func spawn_rand():
@@ -73,7 +75,7 @@ func spawn_rand():
 	var rng = RandomNumberGenerator.new()
 	var num = rng.randi_range(0, 5)
 	#print(str("spawning",prefabs[num]))
-	var child = prefabs[5].instantiate()
+	var child = prefabs[num].instantiate()
 	add_child(child)
 	var vec = Vector2(5803,-9675)
 	child.set_global_position(vec)

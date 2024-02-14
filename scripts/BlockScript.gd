@@ -14,12 +14,12 @@ var rotation_num  = 1
 var center_child
 
 var ALL_ROT_SETS = [
-[[0,-1],[0,1],[1,1],[-1,0],[1,0],[1,-1],[ 0,1],[0,-1],[-1,-1],[ 1,0],[-1,0],[-1,1]],#TAN THIS PROCESS WAS EXTREEMLY TEDIOUS SO GLAD I SPENT HOURS DOING SOMTHING BY HAND THAT WOULD HAVE TAKEN ONLY AN HOUR TO LEARN HOW TO DO WITH MATH
-[[1,0],[-1,0],[0,1],[0,-1],[0,1],[1,0],[-1,0],[1,0],[0,-1],[0,1],[0,-1],[-1,0]],#BLUE
-[[0,-1],[-1,-1],[1,0],[-1,0],[-1,1],[0,-1],[0,1],[1,1],[-1,0],[1,0],[1,-1],[0,1]],#GREEN
-[[0,-1],[0,1],[-1,1],[-1,0],[1,0],[1,1],[0,1],[0,-1],[1,-1],[1,0],[-1,0],[-1,-1]],#PURPLE
-[[-1,0],[0,-1],[-1,-1]],#RED
-[[0,-1],[0,1],[0,-2],[-1,0],[1,0],[2,0]]#YELLOW
+[[[0,-1],[0,1],[1,1]],[[-1,0],[1,0],[1,-1]],[[0,1],[0,-1],[-1,-1]],[[1,0],[-1,0],[-1,1]]],#TAN THIS PROCESS WAS EXTREEMLY TEDIOUS SO GLAD I SPENT HOURS DOING SOMTHING BY HAND THAT WOULD HAVE TAKEN ONLY AN HOUR TO LEARN HOW TO DO WITH MATH
+[[[1,0],[-1,0],[0,1]],[[0,-1],[0,1],[1,0]],[[-1,0],[1,0],[0,-1]],[[0,1],[0,-1],[-1,0]]],#BLUE
+[[[0,-1],[-1,-1],[1,0]],[[-1,0],[-1,1],[0,-1]],[[0,1],[1,1],[-1,0]],[[1,0],[1,-1],[0,1]]],#GREEN
+[[[0,-1],[0,1],[-1,1]],[[-1,0],[1,0],[1,1]],[[0,1],[0,-1],[1,-1]],[[1,0],[-1,0],[-1,-1]]],#PURPLE
+[[[-1,0],[0,-1],[-1,-1]]],#RED
+[[[0,-1],[0,1],[0,-2]],[[-1,0],[1,0],[2,0]]]#YELLOW
 ] # I just realized there is a way to calculate the sign changes without writing in all of these in. (i forget what the operation is called but it comes from trig)
 #var position = vector2()
 # Called when the node enters the scene tree for the first time.
@@ -28,7 +28,7 @@ func _ready():
 	children = get_children()
 	init_rotational_properties()
 	rotation_array = [0]
-	load_rotation_set(0)
+	load_rotation_set(2)
 	#printChi()
 
 func load_rotation_set(x):
@@ -38,26 +38,34 @@ func load_rotation_set(x):
 		0:
 			par_string = "TestBlockBlack4"
 			rotation_array = ALL_ROT_SETS[0]
+			rotation_num = 3
 		1:
 			par_string = "TestBlockBlack2"
 			rotation_array = ALL_ROT_SETS[1]
+			rotation_num = 3
 		2:
 			par_string = "TestBlock3"
 			rotation_array = ALL_ROT_SETS[2]
+			rotation_num = 3
 		3:
 			par_string = "TestBlockBlack4"
 			rotation_array = ALL_ROT_SETS[3]
+			rotation_num = 3
 		4:
 			par_string = "TestBlockBlack3"
 			rotation_array = ALL_ROT_SETS[4]
+			rotation_num = 0
 		5:
 			par_string = "TestBlockBlack4"
 			rotation_array = ALL_ROT_SETS[5]
-	
+			rotation_num = 1
 	set_center_child(par_string)
 func set_center_child(ch_name:String):
+	print(ch_name)
 	for node in children:
+		print(node)
 		if str(node).begins_with(ch_name):
+			print("set")
 			center_child = node
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -73,19 +81,19 @@ func _process(delta):
 		if(check_right()&&active):
 			global_translate(Vector2(block_width,0))
 			bugs()
-	if(Input.is_action_just_pressed("rotate_right")&&rotation_num > 0):
-		
-		var roTo
+	if(Input.is_action_just_pressed("rotate_right")&&rotation_num > 0&&active):
+		var roTo = rotation_state
 		if(rotation_state == rotation_num):
 			roTo = 0
 		else:
 			roTo +=1
+		print(roTo)
 		pre_def_rotation(roTo)
 		#if(check_rotate(roTo)&&active):
 			#rotate(1.57079)
 		bugs()
-	if(Input.is_action_just_pressed("rotate_left")&&rotation_num > 0):
-		var roTo
+	if(Input.is_action_just_pressed("rotate_left")&&rotation_num > 0&&active):
+		var roTo = rotation_state
 		if(rotation_state == 0):
 			roTo = rotation_num
 		else:
@@ -175,25 +183,36 @@ func check_rotate(roTo):
 	
 func pre_def_rotation(roTo):
 	var pos = 0
-	var new_cords = translate_cords(rotation_array[roTo],[center_child.global_position.x,center_child.global_position.y])
+	var new_cords = translate_cords(rotation_array[roTo],[center_child.global_position.x,center_child.global_position.y])#took me a while to figure out I needed the duplicate function here
 	if !check_cords(new_cords):
+		print("fail")
 		return
+	print("pass")
 	for child in children:
 		if child != center_child:
 			child.global_position = Vector2 (new_cords[pos][0],new_cords[pos][1])
 			pos+=1
-	pass
+	rotation_state = roTo
 	
 func translate_cords(globe, center):
 	#globe = [[-1,0],[1,0],[2,0]] #setting it for now this can be commented out
 	#multiply glob
-	for pods in globe:
+	var final_globe = globe.duplicate(true)#solved by reubs thanks
+	print(center)
+	#print(str(rotation_array)+"ROT_ARR 1")
+	#print(str(globe)+"GLOBE 1")
+	for pods in final_globe:
+		print(str(pods)+"pod1")
 		pods[0] = pods[0]*block_width
 		pods[1] = pods[1]*block_width
 		#translation
 		pods[0] = pods[0] + center[0]
 		pods[1] = pods[1] + center[1]
-	return globe
+		print(str(pods)+"pods2")
+	#print(str(globe)+"GLOBE 2")
+	#print(str(rotation_array)+"ROT_ARR 2")
+	
+	return final_globe
 func add_to_parrent():
 	var childs = child_loc()
 	for i in childs:
@@ -202,7 +221,7 @@ func add_to_parrent():
 		#print("printing_squares")
 		#get_parent().print_squares()
 func bugs():
-	get_parent().debug_me(child_loc())
+	#get_parent().debug_me(child_loc())
 	pass
 	
 func init_rotational_properties():
