@@ -28,10 +28,11 @@ func _ready():
 	children = get_children()
 	init_rotational_properties()
 	rotation_array = [0]
-	load_rotation_set()
+	load_rotation_set(0)
 	#printChi()
 
-func load_rotation_set():
+func load_rotation_set(x):
+	parent = x
 	var par_string
 	match parent:
 		0:
@@ -79,7 +80,6 @@ func _process(delta):
 			roTo = 0
 		else:
 			roTo +=1
-		pass
 		pre_def_rotation(roTo)
 		#if(check_rotate(roTo)&&active):
 			#rotate(1.57079)
@@ -90,7 +90,7 @@ func _process(delta):
 			roTo = rotation_num
 		else:
 			roTo -=1
-		pass
+		pre_def_rotation(roTo)
 		#if(check_rotate(roTo)&&active):
 			#rotate(1.57079)
 		bugs()
@@ -185,7 +185,7 @@ func pre_def_rotation(roTo):
 	pass
 	
 func translate_cords(globe, center):
-	globe = [[-1,0],[1,0],[2,0]] #setting it for now this can be commented out
+	#globe = [[-1,0],[1,0],[2,0]] #setting it for now this can be commented out
 	#multiply glob
 	for pods in globe:
 		pods[0] = pods[0]*block_width
@@ -208,4 +208,12 @@ func bugs():
 func init_rotational_properties():
 	pass#set cotation array depending on block name, Set rotation num
 func check_cords(cords):
+	var pos
+	var arr = Array()
+	for i in cords :
+		pos = cord.adjust_vector(i[0],i[1])
+		arr.append(pos)
+	for i in arr:
+		if(!get_parent().empty_dest(i)):
+			return false
 	return true

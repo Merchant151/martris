@@ -77,7 +77,7 @@ func spawn_rand():
 	add_child(child)
 	var vec = Vector2(5803,-9675)
 	child.set_global_position(vec)
-	child.parent = num
+	child.load_rotation_set(num)
 	
 func debug_me(potato):
 	print("========")
