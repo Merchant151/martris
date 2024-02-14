@@ -7,10 +7,20 @@ var step_time = 0.5
 var active : bool
 var children
 #rotational properties
+var parent = 0 # used to determine the rotation set
 var rotation_array
-var rotation_state = 1
+var rotation_state = 0
 var rotation_num  = 1
 var center_child
+
+var ALL_ROT_SETS = [
+[[0,-1],[0,1],[1,1],[-1,0],[1,0],[1,-1],[ 0,1],[0,-1],[-1,-1],[ 1,0],[-1,0],[-1,1]],#TAN THIS PROCESS WAS EXTREEMLY TEDIOUS SO GLAD I SPENT HOURS DOING SOMTHING BY HAND THAT WOULD HAVE TAKEN ONLY AN HOUR TO LEARN HOW TO DO WITH MATH
+[[1,0],[-1,0],[0,1],[0,-1],[0,1],[1,0],[-1,0],[1,0],[0,-1],[0,1],[0,-1],[-1,0]],#BLUE
+[[0,-1],[-1,-1],[1,0],[-1,0],[-1,1],[0,-1],[0,1],[1,1],[-1,0],[1,0],[1,-1],[0,1]],#GREEN
+[[0,-1],[0,1],[-1,1],[-1,0],[1,0],[1,1],[0,1],[0,-1],[1,-1],[1,0],[-1,0],[-1,-1]],#PURPLE
+[[-1,0],[0,-1],[-1,-1]],#RED
+[[0,-1],[0,1],[0,-2],[-1,0],[1,0],[2,0]]#YELLOW
+] # I just realized there is a way to calculate the sign changes without writing in all of these in. (i forget what the operation is called but it comes from trig)
 #var position = vector2()
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,11 +28,36 @@ func _ready():
 	children = get_children()
 	init_rotational_properties()
 	rotation_array = [0]
-	for node in children:
-		if str(node).begins_with("TestBlock3"):
-			center_child = node
+	load_rotation_set()
 	#printChi()
 
+func load_rotation_set():
+	var par_string
+	match parent:
+		0:
+			par_string = "TestBlock3"
+			rotation_array = ALL_ROT_SETS[0]
+		1:
+			par_string = "TestBlock3"
+			rotation_array = ALL_ROT_SETS[1]
+		2:
+			par_string = "TestBlock3"
+			rotation_array = ALL_ROT_SETS[2]
+		3:
+			par_string = "TestBlock3"
+			rotation_array = ALL_ROT_SETS[3]
+		4:
+			par_string = "TestBlock3"
+			rotation_array = ALL_ROT_SETS[4]
+		5:
+			par_string = "TestBlock3"
+			rotation_array = ALL_ROT_SETS[5]
+	
+	set_center_child(par_string)
+func set_center_child(ch_name:String):
+	for node in children:
+		if str(node).begins_with(ch_name):
+			center_child = node
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	count += delta
