@@ -35,22 +35,22 @@ func load_rotation_set():
 	var par_string
 	match parent:
 		0:
-			par_string = "TestBlock3"
+			par_string = "TestBlockBlack4"
 			rotation_array = ALL_ROT_SETS[0]
 		1:
-			par_string = "TestBlock3"
+			par_string = "TestBlockBlack2"
 			rotation_array = ALL_ROT_SETS[1]
 		2:
 			par_string = "TestBlock3"
 			rotation_array = ALL_ROT_SETS[2]
 		3:
-			par_string = "TestBlock3"
+			par_string = "TestBlockBlack4"
 			rotation_array = ALL_ROT_SETS[3]
 		4:
-			par_string = "TestBlock3"
+			par_string = "TestBlockBlack3"
 			rotation_array = ALL_ROT_SETS[4]
 		5:
-			par_string = "TestBlock3"
+			par_string = "TestBlockBlack4"
 			rotation_array = ALL_ROT_SETS[5]
 	
 	set_center_child(par_string)
