@@ -135,8 +135,9 @@ func del_grid_row(row): #deletes cordinates from the virtual grid
 			row_list.append(squares[i])
 	for i in row_list:
 		squares.erase(i)
-	pass
-
+	for i in range(squares.size()): ### I am moving the entire virtual grid blocks above (inverse y axis) the row down one 
+		if(squares[i][1] < row):
+			squares[i][1] += 1
 func move_down(row):
 	var LB=cords.dejust_x(left_bound+1)
 	var RB=cords.dejust_x(right_bound-1)
