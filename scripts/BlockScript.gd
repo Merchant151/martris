@@ -2,10 +2,16 @@ extends Node2D
 
 var cord = cordinate.new()
 var count = 0
+var double_count = 0
+var waiter = 0
 var block_width = 625
 var step_time = 0.5
+var step_two = 0.05
 var active : bool
 var children
+var left_press = false
+var right_press = false
+var down_press = false
 #rotational properties
 var parent = 0 # used to determine the rotation set
 var rotation_array
@@ -70,18 +76,38 @@ func set_center_child(ch_name:String):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	count += delta
+	double_count += delta
+	if left_press || right_press || down_press : waiter += delta
 	#var adj_x = cord.adjust_x(global_position.x)
 	#var adj_y = cord.adjust_y(global_position.y)
 	#print(str("(",adj_x,", ",adj_y,")"))
 	if(Input.is_action_just_pressed("tetris_left")):
 		if(check_left()&&active):
+			left_press = true
 			global_translate(Vector2(-block_width,0))
 			bugs()
+	elif(Input.is_action_just_released("tetris_left")):
+			left_press = false
+			waiter = 0
+	if(left_press && active):
+		if(check_left() && waiter >= 0.5 && double_count >= step_two ):
+			global_translate(Vector2(-block_width,0))
+			bugs()
+			double_count = 0 
 	if(Input.is_action_just_pressed("tetris_right")):
 		if(check_right()&&active):
+			right_press = true
 			global_translate(Vector2(block_width,0))
 			bugs()
-	if(Input.is_action_just_pressed("rotate_right")&&rotation_num > 0&&active):
+	elif(Input.is_action_just_released("tetris_right")):
+			right_press = false
+			waiter = 0
+	if(right_press && active):
+		if(check_right() && waiter >= 0.5 && double_count >= step_two ):
+			global_translate(Vector2(block_width,0))
+			bugs()
+			double_count = 0 
+	if(Input.is_action_just_pressed("rotate_left")&&rotation_num > 0&&active):
 		var roTo = rotation_state
 		if(rotation_state == rotation_num):
 			roTo = 0
@@ -92,7 +118,7 @@ func _process(delta):
 		#if(check_rotate(roTo)&&active):
 			#rotate(1.57079)
 		bugs()
-	if(Input.is_action_just_pressed("rotate_left")&&rotation_num > 0&&active):
+	if(Input.is_action_just_pressed("rotate_right")&&rotation_num > 0&&active):
 		var roTo = rotation_state
 		if(rotation_state == 0):
 			roTo = rotation_num
@@ -106,8 +132,17 @@ func _process(delta):
 		step_time = 0.01
 	if(Input.is_action_just_pressed("down")&&active):
 		if(check_down()&&active):
+			down_press = true
 			global_translate(Vector2(0,block_width))
 			bugs()
+	elif(Input.is_action_just_released("down")):
+		down_press = false
+		waiter = 0
+	if(down_press && active):
+		if(check_down() && waiter >= 0.5 && double_count >= step_two ):
+			global_translate(Vector2(0,block_width))
+			bugs()
+			double_count = 0 
 	if(count >= step_time && active):
 		if(check_down()):
 			#move_local_y(block_width)
@@ -221,7 +256,7 @@ func add_to_parrent():
 		#print("printing_squares")
 		#get_parent().print_squares()
 func bugs():
-	#get_parent().debug_me(child_loc())
+	get_parent().debug_me(child_loc())
 	pass
 	
 func init_rotational_properties():
