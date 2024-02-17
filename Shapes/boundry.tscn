@@ -135,7 +135,7 @@ position = Vector2(0, 625)
 position = Vector2(0, 1250)
 
 [node name="wall2" type="Node2D" parent="."]
-position = Vector2(11250, 0)
+position = Vector2(12500, 0)
 
 [node name="nine" type="Node2D" parent="wall2"]
 
@@ -323,10 +323,16 @@ position = Vector2(1875, 0)
 [node name="TestBlockBlack4" parent="Floor/7" instance=ExtResource("1_nmx7r")]
 position = Vector2(1250, 0)
 
-[node name="8" type="Node2D" parent="Floor"]
+[node name="9" type="Node2D" parent="Floor"]
 position = Vector2(10000, 0)
 
-[node name="TestBlockBlack" parent="Floor/8" instance=ExtResource("1_nmx7r")]
+[node name="TestBlockBlack" parent="Floor/9" instance=ExtResource("1_nmx7r")]
 
-[node name="TestBlockBlack2" parent="Floor/8" instance=ExtResource("1_nmx7r")]
+[node name="TestBlockBlack2" parent="Floor/9" instance=ExtResource("1_nmx7r")]
 position = Vector2(625, 0)
+
+[node name="TestBlockBlack3" parent="Floor/9" instance=ExtResource("1_nmx7r")]
+position = Vector2(1875, 0)
+
+[node name="TestBlockBlack4" parent="Floor/9" instance=ExtResource("1_nmx7r")]
+position = Vector2(1250, 0)

@@ -4,7 +4,7 @@ class_name cordinate
 #these will be the offset vars for cordinate calls
 var unit = 625
 var remain_x = 178
-var remain_y = 300
+var remain_y = 325
 var offset_x = -9
 var offset_y = 15
 

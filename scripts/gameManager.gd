@@ -117,8 +117,10 @@ func del_row(row):
 	#print(sckubes)
 	for i in range(left_bound+1,right_bound-1):
 		for slipperies in sckubes:
-			if(slipperies.global_position.x >= LB&&slipperies.global_position.x <= RB&&slipperies.global_position.y == y+25):
-				#print(str(slipperies)+"passed")
+			print(slipperies.global_position.y)
+			print(y+50)
+			if(slipperies.global_position.x >= LB&&slipperies.global_position.x <= RB&&slipperies.global_position.y == y+50):
+				print(str(slipperies)+"passed")
 				kill_the_child(slipperies)
 				pass
 			pass
@@ -147,7 +149,7 @@ func move_down(row):
 		if (shape.get_child_count() > 0):
 			var blocks = shape.get_children()
 			for block in blocks:
-				if(block.global_position.x >=LB&&block.global_position.x <=RB&&block.global_position.y < y+25):
+				if(block.global_position.x >=LB&&block.global_position.x <=RB&&block.global_position.y < y-25):
 					block.global_translate(Vector2(0,block.get_parent().block_width))
 					pass
 					#ADD MOVE CHILD DOWN

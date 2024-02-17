@@ -256,7 +256,7 @@ func add_to_parrent():
 		#print("printing_squares")
 		#get_parent().print_squares()
 func bugs():
-	get_parent().debug_me(child_loc())
+	#get_parent().debug_me(child_loc())
 	pass
 	
 func init_rotational_properties():

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://btbrn66b1ltd"]
+[gd_scene load_steps=5 format=3 uid="uid://btbrn66b1ltd"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_c8ea8"]
 [ext_resource type="PackedScene" uid="uid://cnody02s6sr3h" path="res://Shapes/test_shape_1.tscn" id="1_illmc"]
 [ext_resource type="Script" path="res://scripts/BlockScript.gd" id="3_elywt"]
+[ext_resource type="PackedScene" uid="uid://dcxiwh63empqe" path="res://Shapes/boundry.tscn" id="4_xs5wl"]
 
 [node name="Scene1" type="Node2D"]
 script = ExtResource("1_c8ea8")
@@ -15,3 +16,6 @@ zoom = Vector2(0.035, 0.035)
 [node name="testShape1" parent="." instance=ExtResource("1_illmc")]
 position = Vector2(5803, -9675)
 script = ExtResource("3_elywt")
+
+[node name="Boundry" parent="." instance=ExtResource("4_xs5wl")]
+position = Vector2(-447, -8425)
