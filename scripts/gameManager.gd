@@ -107,6 +107,7 @@ func del_row(row):
 	var RB=cords.dejust_x(right_bound-1)
 	var y = cords.dejust_y(row)
 	print("searching for cord: " + str(y))
+	print("cord adjustment " + str(y+50))
 	var shapes = get_children()
 	var sckubes=Array()
 	for shape in shapes:
@@ -118,8 +119,8 @@ func del_row(row):
 	for i in range(left_bound+1,right_bound-1):
 		for slipperies in sckubes:
 			print(slipperies.global_position.y)
-			print(y+50)
-			if(slipperies.global_position.x >= LB&&slipperies.global_position.x <= RB&&slipperies.global_position.y == y+50):
+			print("cord adjustment " + str(y+50))
+			if(slipperies.global_position.x >= LB&&slipperies.global_position.x <= RB&&slipperies.global_position.y == y):
 				print(str(slipperies)+"passed")
 				kill_the_child(slipperies)
 				pass
