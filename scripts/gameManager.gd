@@ -4,6 +4,7 @@ const window_y = 900
 const left_bound = -10
 const right_bound = 10
 const bottom_bound=33 
+var pause
 
 var prefabs = [
 load("res://Shapes/tan_shape.tscn"),
@@ -19,6 +20,7 @@ var cords
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS # allows node to process durring pause
 	cords = cordinate.new()
 	squares.append([256,256])# Replace with function body.
 	#print(str(get_viewport().size))
@@ -27,17 +29,31 @@ func _ready():
 	var v = Vector2i(window_x,window_y)
 	view.set_size(v)
 	
+	
 	#print(view.get_size())
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(Input.is_key_pressed(KEY_P)):
-		#print("spawning?")
-		del_row(31)
+	
+	if(Input.is_action_just_pressed("esc")&& pause):
+		print("unpaused")
+		unpause_game()
+	elif(Input.is_action_just_pressed("esc")):
+		print("paused")
+		pause_game()
+		#del_row(31)
+
 	pass
 	#if(Input.is_action_just_pressed("tetris_left")):
 	#	print("left pressed")
 	#if(Input.is_action_just_pressed("tetris_right")):
 	#	print("right pressed")
+
+func pause_game():
+	pause = true
+	get_tree().paused = true
+func unpause_game():
+	pause = false
+	get_tree().paused = false
 
 func new_square(sq): 
 	squares.append(sq)

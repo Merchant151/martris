@@ -30,6 +30,7 @@ var ALL_ROT_SETS = [
 #var position = vector2()
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE #should make this pausible because parrent isn't
 	active = true
 	children = get_children()
 	init_rotational_properties()
