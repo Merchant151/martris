@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://btbrn66b1ltd"]
+[gd_scene load_steps=6 format=3 uid="uid://btbrn66b1ltd"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_c8ea8"]
 [ext_resource type="PackedScene" uid="uid://cnody02s6sr3h" path="res://Shapes/test_shape_1.tscn" id="1_illmc"]
 [ext_resource type="Script" path="res://scripts/BlockScript.gd" id="3_elywt"]
 [ext_resource type="PackedScene" uid="uid://dcxiwh63empqe" path="res://Shapes/boundry.tscn" id="4_xs5wl"]
+[ext_resource type="PackedScene" uid="uid://bo7mdyees78t1" path="res://Scenes/UI.tscn" id="5_h3ee4"]
 
 [node name="Scene1" type="Node2D"]
 script = ExtResource("1_c8ea8")
@@ -19,3 +20,5 @@ script = ExtResource("3_elywt")
 
 [node name="Boundry" parent="." instance=ExtResource("4_xs5wl")]
 position = Vector2(-447, -8425)
+
+[node name="Ui" parent="." instance=ExtResource("5_h3ee4")]
