@@ -68,11 +68,11 @@ func load_rotation_set(x):
 			rotation_num = 1
 	set_center_child(par_string)
 func set_center_child(ch_name:String):
-	print(ch_name)
+	#print(ch_name)
 	for node in children:
-		print(node)
+		#print(node)
 		if str(node).begins_with(ch_name):
-			print("set")
+			#print("set")
 			center_child = node
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

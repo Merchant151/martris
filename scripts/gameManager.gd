@@ -69,7 +69,7 @@ func empty_dest(pos):
 	for i in squares:
 		if(i[0] == pos[0] && i[1] == pos[1]):
 			#print(str("hit square at (",i[0]," , ",i[1],")"))
-			print("hit square")
+			#print("hit square")
 			return false
 		#elif(pos[1] == i[1]):
 			#print("bottom square")
@@ -102,9 +102,10 @@ func debug_me(potato):
 	debug.live_board(squares,potato)	
 
 func row_clear():
-	print("checking rows")
+	_out_of_bounds()
+	#print("checking rows")
 	var row_len = right_bound - left_bound -1
-	print("at row_LEN: "+str(row_len))
+	#print("at row_LEN: "+str(row_len))
 	for row in range(0,bottom_bound):
 		#print("ROW :"+ str(row))
 		var x_count = 0
@@ -112,18 +113,24 @@ func row_clear():
 			for i in squares:
 				if (i[0]==collumn&&i[1]==row):
 					x_count += 1
-		print("ROW :"+ str(row)+" C: "+str(x_count))
+		#print("ROW :"+ str(row)+" C: "+str(x_count))
 		if x_count == row_len:
 			del_row(row)
-			print(str("del row: ",row))
+			#print(str("del row: ",row))
+
+func _out_of_bounds():
+	for i in squares: 
+		if (i[1] <= 0 ):
+			print("Game Over")
+			pause_game()
 
 func del_row(row):
 	del_grid_row(row)
 	var LB=cords.dejust_x(left_bound+1)
 	var RB=cords.dejust_x(right_bound-1)
 	var y = cords.dejust_y(row)
-	print("searching for cord: " + str(y))
-	print("cord adjustment " + str(y+50))
+	#print("searching for cord: " + str(y))
+	#print("cord adjustment " + str(y+50))
 	var shapes = get_children()
 	var sckubes=Array()
 	for shape in shapes:
@@ -134,10 +141,10 @@ func del_row(row):
 	#print(sckubes)
 	for i in range(left_bound+1,right_bound-1):
 		for slipperies in sckubes:
-			print(slipperies.global_position.y)
-			print("cord adjustment " + str(y+50))
+			#print(slipperies.global_position.y)
+			#print("cord adjustment " + str(y+50))
 			if(slipperies.global_position.x >= LB&&slipperies.global_position.x <= RB&&slipperies.global_position.y == y):
-				print(str(slipperies)+"passed")
+				#print(str(slipperies)+"passed")
 				kill_the_child(slipperies)
 				pass
 			pass
