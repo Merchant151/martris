@@ -41,6 +41,8 @@ func _process(delta):
 		print("paused")
 		pause_game()
 		#del_row(31)
+	if(Input.is_key_pressed(KEY_X)):
+		_clear_all_blocks()
 
 	pass
 	#if(Input.is_action_just_pressed("tetris_left")):
@@ -177,3 +179,8 @@ func move_down(row):
 					block.global_translate(Vector2(0,block.get_parent().block_width))
 					pass
 					#ADD MOVE CHILD DOWN
+
+func _clear_all_blocks():
+	for i in range(-4,33):
+		del_grid_row(i)
+	
