@@ -43,6 +43,7 @@ func _process(delta):
 		#del_row(31)
 	if(Input.is_key_pressed(KEY_X)):
 		_clear_all_blocks()
+		print("x")
 
 	pass
 	#if(Input.is_action_just_pressed("tetris_left")):
@@ -182,5 +183,5 @@ func move_down(row):
 
 func _clear_all_blocks():
 	for i in range(-4,33):
-		del_grid_row(i)
+		del_row(i)
 	
