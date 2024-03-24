@@ -5,6 +5,7 @@ const left_bound = -10
 const right_bound = 10
 const bottom_bound=33 
 var pause
+var game_over
 
 var prefabs = [
 load("res://Shapes/tan_shape.tscn"),
@@ -37,7 +38,7 @@ func _process(delta):
 	if(Input.is_action_just_pressed("esc")&& pause):
 		print("unpaused")
 		unpause_game()
-	elif(Input.is_action_just_pressed("esc")):
+	elif(Input.is_action_just_pressed("esc")&& !game_over):
 		print("paused")
 		pause_game()
 		#del_row(31)
@@ -57,6 +58,9 @@ func pause_game():
 func unpause_game():
 	pause = false
 	get_tree().paused = false
+func _end_game():
+	game_over = true
+	get_tree().paused = true
 
 func new_square(sq): 
 	squares.append(sq)
@@ -125,7 +129,7 @@ func _out_of_bounds():
 	for i in squares: 
 		if (i[1] <= 0 ):
 			print("Game Over")
-			pause_game()
+			_end_game()
 
 func del_row(row):
 	del_grid_row(row)
