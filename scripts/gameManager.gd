@@ -21,6 +21,7 @@ var cords
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	game_over = false
 	process_mode = Node.PROCESS_MODE_ALWAYS # allows node to process durring pause
 	cords = cordinate.new()
 	squares.append([256,256])# Replace with function body.
@@ -29,6 +30,7 @@ func _ready():
 	#print(str(typeof(get_viewport())))
 	var v = Vector2i(window_x,window_y)
 	view.set_size(v)
+	spawn_rand()
 	
 	
 	#print(view.get_size())
@@ -42,8 +44,12 @@ func _process(delta):
 		print("paused")
 		pause_game()
 		#del_row(31)
-	if(Input.is_key_pressed(KEY_X)):
+	if(Input.is_action_just_released("restart")&& (game_over||pause)):
+		#print(pause)
+		#print(game_over)
 		_clear_all_blocks()
+		_ready()
+		unpause_game()
 		print("x")
 
 	pass
