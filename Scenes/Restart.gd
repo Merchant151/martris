@@ -15,4 +15,5 @@ func show_tip():
 	show()
 	
 func hide_tip():
+	print("called")
 	hide()

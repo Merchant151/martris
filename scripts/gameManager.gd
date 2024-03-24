@@ -7,6 +7,9 @@ const bottom_bound=33
 var pause
 var game_over
 signal show()
+signal show_pause()
+signal show_end()
+signal hide()
 
 var prefabs = [
 load("res://Shapes/tan_shape.tscn"),
@@ -23,8 +26,26 @@ var cords
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var ready_msg = get_node("Ui/a/v/h/menu/Restart")
+	var pause_msg = get_node("Ui/a/v/h/menu/Pause")
+	var end_msg = get_node("Ui/a/v/h/menu/GameOver")
 	if !show.is_connected(ready_msg.show_tip):
 		show.connect(ready_msg.show_tip)
+	if !show_pause.is_connected(ready_msg.show_tip):
+		show_pause.connect(ready_msg.show_tip)
+	if !show_end.is_connected(ready_msg.show_tip):
+		show_end.connect(ready_msg.show_tip)
+	if !hide.is_connected(ready_msg.hide_tip):
+		hide.connect(ready_msg.hide_tip)
+	if !show_pause.is_connected(pause_msg.show_tip):
+		show_pause.connect(pause_msg.show_tip)
+	if !show_end.is_connected(end_msg.show_tip):
+		show_end.is_connected(end_msg.show_tip)
+	if !hide.is_connected(pause_msg.hide_tip):
+		hide.connect(pause_msg.hide_tip)
+	if !hide.is_connected(end_msg.hide_tip):
+		hide.connect(end_msg.hide_tip)
+	
+	hide.emit()
 	game_over = false
 	process_mode = Node.PROCESS_MODE_ALWAYS # allows node to process durring pause
 	cords = cordinate.new()
@@ -65,16 +86,19 @@ func _process(delta):
 func pause_game():
 	pause = true
 	get_tree().paused = true
+	show_pause.emit()
 func unpause_game():
 	pause = false
 	get_tree().paused = false
+	hide.emit()
 func _end_game():
 	game_over = true
 	get_tree().paused = true
-func show_pause():
-	pass
-func hide_pause():
-	pass
+	show_end.emit()
+#func show_pause():
+#	pass
+#func hide_pause():
+#	pass
 
 func new_square(sq): 
 	squares.append(sq)
