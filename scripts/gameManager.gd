@@ -6,6 +6,7 @@ const right_bound = 10
 const bottom_bound=33 
 var pause
 var game_over
+signal show()
 
 var prefabs = [
 load("res://Shapes/tan_shape.tscn"),
@@ -21,6 +22,9 @@ var cords
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var ready_msg = get_node("Ui/a/v/h/menu/Restart")
+	if !show.is_connected(ready_msg.show_tip):
+		show.connect(ready_msg.show_tip)
 	game_over = false
 	process_mode = Node.PROCESS_MODE_ALWAYS # allows node to process durring pause
 	cords = cordinate.new()
@@ -67,6 +71,10 @@ func unpause_game():
 func _end_game():
 	game_over = true
 	get_tree().paused = true
+func show_pause():
+	pass
+func hide_pause():
+	pass
 
 func new_square(sq): 
 	squares.append(sq)
@@ -186,7 +194,8 @@ func move_down(row):
 		if (shape.get_child_count() > 0):
 			var blocks = shape.get_children()
 			for block in blocks:
-				if(block.global_position.x >=LB&&block.global_position.x <=RB&&block.global_position.y < y-25):
+				if(block.global_position.x >=LB&&block.global_position.x <=RB&&block.global_position.y < y-25&&!block.get_parent().to_string().contains("Ui")):
+					print(block.get_parent().to_string())
 					block.global_translate(Vector2(0,block.get_parent().block_width))
 					pass
 					#ADD MOVE CHILD DOWN
