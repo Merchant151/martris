@@ -10,6 +10,9 @@ signal show()
 signal show_pause()
 signal show_end()
 signal hide()
+signal score(value)
+var score_int
+var num_clear
 
 var prefabs = [
 load("res://Shapes/tan_shape.tscn"),
@@ -25,9 +28,11 @@ var cords
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	num_clear = 0
 	var ready_msg = get_node("Ui/a/v/h/menu/Restart")
 	var pause_msg = get_node("Ui/a/v/h/menu/Pause")
-	var end_msg = get_node("Ui/a/v/h/menu/GameOver")
+	var end_msg   = get_node("Ui/a/v/h/menu/GameOver")
+	var score_tag = get_node("Ui2/MarginContainer/VBoxContainer/menuBox/Score") 
 	if !show.is_connected(ready_msg.show_tip):
 		show.connect(ready_msg.show_tip)
 	if !show_pause.is_connected(ready_msg.show_tip):
@@ -44,7 +49,11 @@ func _ready():
 		hide.connect(pause_msg.hide_tip)
 	if !hide.is_connected(end_msg.hide_tip):
 		hide.connect(end_msg.hide_tip)
+	if !score.is_connected(score_tag.set_score):
+		score.connect(score_tag.set_score)
 	
+	score_int = 0
+	score.emit(score_int)
 	hide.emit()
 	game_over = false
 	process_mode = Node.PROCESS_MODE_ALWAYS # allows node to process durring pause
@@ -76,12 +85,7 @@ func _process(delta):
 		_ready()
 		unpause_game()
 		print("x")
-
 	pass
-	#if(Input.is_action_just_pressed("tetris_left")):
-	#	print("left pressed")
-	#if(Input.is_action_just_pressed("tetris_right")):
-	#	print("right pressed")
 
 func pause_game():
 	pause = true
@@ -132,6 +136,7 @@ func empty_dest(pos):
 		return true
 
 func spawn_rand():
+	num_clear = 0
 	#var test = load("res://Shapes/yellow_shape.tscn")
 	var rng = RandomNumberGenerator.new()
 	var num = rng.randi_range(0, 5)
@@ -161,7 +166,19 @@ func row_clear():
 		#print("ROW :"+ str(row)+" C: "+str(x_count))
 		if x_count == row_len:
 			del_row(row)
+			num_clear = num_clear +1
 			#print(str("del row: ",row))
+	match num_clear:
+		1:
+			score_int = score_int + 50
+		2:
+			score_int = score_int + 100
+		3: 
+			score_int = score_int + 500
+		4: 
+			score_int = score_int + 1000
+	score.emit(score_int)
+	
 
 func _out_of_bounds():
 	for i in squares: 
