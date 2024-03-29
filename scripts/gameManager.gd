@@ -77,10 +77,7 @@ func _process(delta):
 	elif(Input.is_action_just_pressed("esc")&& !game_over):
 		print("paused")
 		pause_game()
-		#del_row(31)
 	if(Input.is_action_just_released("restart")&& (game_over||pause)):
-		#print(pause)
-		#print(game_over)
 		_clear_all_blocks()
 		_ready()
 		unpause_game()
@@ -111,7 +108,8 @@ func remove_row() :
 	pass
 func print_squares():
 	for i in squares:
-		print(str(i[0]," ",i[1]))
+		pass
+		#print(str(i[0]," ",i[1]))
 	
 func empty_dest(pos):
 	#print_squares()
@@ -131,11 +129,12 @@ func empty_dest(pos):
 		print("bottom boundry")
 		return false
 	else:
-		#print("true")
 		#print(str("pass boundry at (",pos[0]," , ",pos[1],")"))
 		return true
 
 func spawn_rand():
+	#if check_active():
+	#	return
 	num_clear = 0
 	#var test = load("res://Shapes/yellow_shape.tscn")
 	var rng = RandomNumberGenerator.new()
@@ -146,6 +145,16 @@ func spawn_rand():
 	var vec = Vector2(5803,-9675)
 	child.set_global_position(vec)
 	child.load_rotation_set(num)
+	
+func check_active():
+	var childs = get_children()
+	for child in childs:
+		if ("active" in child):
+			if child.active == true:
+				print("found active")
+				return true
+	
+	return false
 	
 func debug_me(potato):
 	print("========")
@@ -207,6 +216,7 @@ func del_row(row):
 			#print("cord adjustment " + str(y+50))
 			if(slipperies.global_position.x >= LB&&slipperies.global_position.x <= RB&&slipperies.global_position.y == y):
 				#print(str(slipperies)+"passed")
+				slipperies.get_parent().active = false
 				kill_the_child(slipperies)
 				pass
 			pass
@@ -236,7 +246,7 @@ func move_down(row):
 			var blocks = shape.get_children()
 			for block in blocks:
 				if(block.global_position.x >=LB&&block.global_position.x <=RB&&block.global_position.y < y-25&&!block.get_parent().to_string().contains("Ui")):
-					print(block.get_parent().to_string())
+					#print(block.get_parent().to_string())
 					block.global_translate(Vector2(0,block.get_parent().block_width))
 					pass
 					#ADD MOVE CHILD DOWN

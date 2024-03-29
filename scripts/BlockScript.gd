@@ -114,7 +114,7 @@ func _process(delta):
 			roTo = 0
 		else:
 			roTo +=1
-		print(roTo)
+		#print(roTo)
 		pre_def_rotation(roTo)
 		#if(check_rotate(roTo)&&active):
 			#rotate(1.57079)
@@ -238,13 +238,13 @@ func translate_cords(globe, center):
 	#print(str(rotation_array)+"ROT_ARR 1")
 	#print(str(globe)+"GLOBE 1")
 	for pods in final_globe:
-		print(str(pods)+"pod1")
+		#print(str(pods)+"pod1")
 		pods[0] = pods[0]*block_width
 		pods[1] = pods[1]*block_width
 		#translation
 		pods[0] = pods[0] + center[0]
 		pods[1] = pods[1] + center[1]
-		print(str(pods)+"pods2")
+		#print(str(pods)+"pods2")
 	#print(str(globe)+"GLOBE 2")
 	#print(str(rotation_array)+"ROT_ARR 2")
 	

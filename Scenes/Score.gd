@@ -1,5 +1,5 @@
 extends Label
-var active = true
+#var active = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,7 +22,7 @@ func _process(delta):
 func set_score(x):
 	
 	text = "Score " + str(x)
-	print("FOO BAR FOO")
+	#print("FOO BAR FOO")
 	#text ="score"
 	#text = "Score" + String(x)
 	#score = x 
