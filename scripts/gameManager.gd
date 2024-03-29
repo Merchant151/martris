@@ -146,13 +146,13 @@ func spawn_rand():
 	child.set_global_position(vec)
 	child.load_rotation_set(num)
 	
-func check_active():
-	var childs = get_children()
-	for child in childs:
-		if ("active" in child):
-			if child.active == true:
-				print("found active")
-				return true
+#func check_active():
+	#var childs = get_children()
+	#for child in childs:
+		#if ("active" in child):
+			#if child.active == true:
+			#	print("found active")
+			#	return true
 	
 	return false
 	
