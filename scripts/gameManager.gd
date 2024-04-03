@@ -20,7 +20,8 @@ load("res://Shapes/blue_shape.tscn"),
 load("res://Shapes/green_shape.tscn"),
 load("res://Shapes/Purple_shape.tscn"),
 load("res://Shapes/red_shape.tscn"),
-load("res://Shapes/yellow_shape.tscn")]
+load("res://Shapes/yellow_shape.tscn"),
+load("res://Shapes/vomit_shape.tscn")]
 
 var squares = Array()
 var debug = debugger.new()
@@ -138,7 +139,7 @@ func spawn_rand():
 	num_clear = 0
 	#var test = load("res://Shapes/yellow_shape.tscn")
 	var rng = RandomNumberGenerator.new()
-	var num = rng.randi_range(0, 5)
+	var num = rng.randi_range(0, 6)
 	#print(str("spawning",prefabs[num]))
 	var child = prefabs[num].instantiate()
 	add_child(child)

@@ -25,7 +25,8 @@ var ALL_ROT_SETS = [
 [[[0,-1],[-1,-1],[1,0]],[[-1,0],[-1,1],[0,-1]],[[0,1],[1,1],[-1,0]],[[1,0],[1,-1],[0,1]]],#GREEN
 [[[0,-1],[0,1],[-1,1]],[[-1,0],[1,0],[1,1]],[[0,1],[0,-1],[1,-1]],[[1,0],[-1,0],[-1,-1]]],#PURPLE
 [[[-1,0],[0,-1],[-1,-1]]],#RED
-[[[0,-1],[0,1],[0,-2]],[[-1,0],[1,0],[2,0]]]#YELLOW
+[[[0,-1],[0,1],[0,-2]],[[-1,0],[1,0],[2,0]]],#YELLOW
+[[[0,-1],[1,-1],[-1,0]],[[-1,0],[-1,-1],[0,1]],[[0,1],[1,0],[-1,1]],[[1,0],[0,-1],[1,1]]]#VOMIT
 ] # I just realized there is a way to calculate the sign changes without writing in all of these in. (i forget what the operation is called but it comes from trig)
 #var position = vector2()
 # Called when the node enters the scene tree for the first time.
@@ -66,6 +67,10 @@ func load_rotation_set(x):
 			par_string = "TestBlockBlack4"
 			rotation_array = ALL_ROT_SETS[5]
 			rotation_num = 1
+		6:  
+			par_string = "TestBlockBlack"
+			rotation_array = ALL_ROT_SETS[6]
+			rotation_num = 3
 	set_center_child(par_string)
 func set_center_child(ch_name:String):
 	#print(ch_name)
@@ -208,7 +213,6 @@ func check_down():
 			return false
 	return true
 func check_rotate_right():
-	##TODO
 	return true
 func check_rotate_left():
 	##TODO
