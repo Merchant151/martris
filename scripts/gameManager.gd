@@ -29,6 +29,7 @@ var cords
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#Goodbye World
 	num_clear = 0
 	var ready_msg = get_node("Ui/a/v/h/menu/Restart")
 	var pause_msg = get_node("Ui/a/v/h/menu/Pause")
